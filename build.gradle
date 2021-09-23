@@ -14,12 +14,21 @@ repositories{
 
 ext{
     //the build number that this plugin is made for
-    mindustryVersion = 'v123'
+    mindustryVersion = 'v126.2'
+    ghpHash = '26b7bd47a0'
+    arcHash = { return '1b24d685ea94dd40244be869e70671080e950825'}
+
+    getGHPModule = {
+        if (new File(projectDir.parent, '/GHPluginUtil/').exists())
+            return files("../GHPluginUtil/build/libs/GHPluginUtil.jar")
+        else
+            return "com.github.Gee-aitcH:GHPluginUtil:$ghpHash"
+    }
 }
 
-dependencies{
-    implementation 'com.github.Gee-aitcH:GHPluginUtil:d07bbfe253'
-    compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
+dependencies {
+    implementation getGHPModule()
+    compileOnly "com.github.Anuken.Arc:arc-core:" + arcHash()
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
 }
 
@@ -32,4 +41,8 @@ jar{
     from(rootDir){
         include "plugin.json"
     }
+}
+
+tasks.withType(JavaCompile).each {
+    it.options.compilerArgs.add('--enable-preview')
 }

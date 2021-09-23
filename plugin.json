@@ -1,7 +1,7 @@
 {
-  "name": "ExampleGHPlugin",
+  "name": "LogicFix",
   "author": "(G_H)",
-  "main": "exampleghplugin.ExampleGHPlugin",
-  "description": "An example plugin with the application of GH's plugin utils.",
-  "version": 1.1
+  "main": "logicfix.LogicFix",
+  "description": "Plugin for debug usage.",
+  "version": 1.0
 }
